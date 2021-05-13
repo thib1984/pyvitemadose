@@ -1,5 +1,7 @@
 # pyvitemadose
 
+pyvitemadose displays available chronodose for your departement in France
+
 ## install
 
 ``pip3 install pyvitemadose``
