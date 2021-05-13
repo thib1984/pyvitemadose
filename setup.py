@@ -4,7 +4,7 @@ from setuptools import setup
 setup(
     name="pyvitemadose",
     version="0.1.3",
-    description="pyvitemadose display available chronodose for your departement in France",
+    description="pyvitemadose displays available chronodoses for your departement in France",
     long_description="The complete description/installation/use/FAQ is available at : https://github.com/thib1984/pyvitemadose#readme",
     url="https://github.com/thib1984/pyvitemadose",
     author="thib1984",
