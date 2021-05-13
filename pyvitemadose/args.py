@@ -11,7 +11,7 @@ def compute_args():
     check args and return them
     """
     my_parser = argparse.ArgumentParser(
-        description="pyvitemadose affiche les chronodoses disponibles du departement en parametre",
+        description="pyvitemadose displays available chronodoses of covid vaccine for your departement in France given in parameter",
         epilog="""
         Full documentation at: <https://github.com/thib1984/pyvitemadose>.
         Report bugs to <https://github.com/thib1984/pyvitemadose/issues>.
