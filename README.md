@@ -1,6 +1,6 @@
 # pyvitemadose
 
-pyvitemadose displays available chronodoses for your departement in France
+pyvitemadose displays available chronodoses of covid vaccine for your departement in France
 
 ## install
 
