@@ -4,7 +4,7 @@
 
 ``pip3 install pyvitemadose``
 or
-``pip3 install pyvitemadose``
+``pip install pyvitemadose``
 
 ## use
 
