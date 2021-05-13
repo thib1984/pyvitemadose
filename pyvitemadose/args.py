@@ -25,7 +25,7 @@ def compute_args():
     my_group.add_argument(
         "departement",
         metavar="departement",
-        type=int,
+        type=str,
         nargs="?",
         help="numero departement",
     )

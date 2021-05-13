@@ -8,7 +8,7 @@ import requests
 
 def find(dept):
     trouve = False
-    r = requests.get("https://vitemadose.gitlab.io/vitemadose/"+str(dept)+".json")
+    r = requests.get("https://vitemadose.gitlab.io/vitemadose/"+dept.zfill(2)+".json")
     centres_disponibles = r.json().get("centres_disponibles",[])
     for centre in centres_disponibles:
         appointment_schedules =  centre.get("appointment_schedules",[])
