@@ -1,0 +1,6 @@
+build
+dist
+pyvitemadose.egg-info
+.vscode
+venv
+
