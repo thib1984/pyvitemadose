@@ -1,5 +1,5 @@
 """
-pyvitemadose argparse gestion
+pyvitemadose use case
 """
 
 import argparse
@@ -9,10 +9,8 @@ import requests
 def find(dept):
     trouve = False
     r = requests.get("https://vitemadose.gitlab.io/vitemadose/"+dept.zfill(2)+".json")
-    centres_disponibles = r.json().get("centres_disponibles",[])
-    for centre in centres_disponibles:
-        appointment_schedules =  centre.get("appointment_schedules",[])
-        for schedule in appointment_schedules:
+    for centre in r.json().get("centres_disponibles",[]):
+        for schedule in  centre.get("appointment_schedules",[]):
             if schedule.get("name","") == "chronodose" and schedule.get("total","") != 0:
                 trouve = True
                 print("url      : " + centre.get("url"))
