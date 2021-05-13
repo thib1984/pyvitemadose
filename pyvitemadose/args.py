@@ -21,11 +21,19 @@ def compute_args():
         There is NO WARRANTY, to the extent permitted by law.
         Written by thib1984.""",
     )
-    my_parser.add_argument(
+    my_group = my_parser.add_mutually_exclusive_group(required=True)
+    my_group.add_argument(
         "departement",
         metavar="departement",
         type=int,
+        nargs="?",
         help="numero departement",
+    )
+    my_group.add_argument(
+        "-u",
+        "--update",
+        action="store_true",
+        help="update pyvitemadose",
     )
 
     # if no parameter

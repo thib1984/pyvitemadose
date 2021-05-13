@@ -19,6 +19,7 @@ def find(dept):
                 print("adresse  : " + centre.get("metadata").get("address"))
                 print("type     : " + str(centre.get("vaccine_type")))
                 print("doses    : " + str(schedule.get("total")))    
-                print("")           
+                print("")                           
     if not trouve:
-        print("pas de creneaux trouves...")            
+        print("pas de creneaux trouves...")
+        sys.exit(2)
