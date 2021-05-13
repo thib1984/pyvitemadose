@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="pyvitemadose",
-    version="0.1.1",
+    version="0.1.2",
     description="pyvitemadose",
     long_description="The complete description/installation/use/FAQ is available at : https://github.com/thib1984/pyvitemadose#readme",
     url="https://github.com/thib1984/pyvitemadose",
