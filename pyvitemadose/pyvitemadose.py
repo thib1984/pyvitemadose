@@ -9,6 +9,9 @@ import requests
 def find(dept):
     trouve = False
     r = requests.get("https://vitemadose.gitlab.io/vitemadose/"+dept.zfill(2)+".json")
+    if str(r) != "<Response [200]>":
+        print("no data found, verify the departement")
+        sys.exit(1)
     for centre in r.json().get("centres_disponibles",[]):
         for schedule in  centre.get("appointment_schedules",[]):
             if schedule.get("name","") == "chronodose" and schedule.get("total","") != 0:
