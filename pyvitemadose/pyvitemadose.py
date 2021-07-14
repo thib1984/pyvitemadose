@@ -14,8 +14,9 @@ def find(dept):
         sys.exit(1)
     for centre in r.json().get("centres_disponibles",[]):
         for schedule in  centre.get("appointment_schedules",[]):
-            if schedule.get("name","") == "chronodose" and schedule.get("total","") != 0:
+            if schedule.get("total","") != 0:
                 trouve = True
+                print("date     : " + schedule.get("name"))
                 print("url      : " + centre.get("url"))
                 print("adresse  : " + centre.get("metadata").get("address"))
                 print("type     : " + str(centre.get("vaccine_type")))
