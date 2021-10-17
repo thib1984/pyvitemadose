@@ -1,5 +1,7 @@
 # pyvitemadose
 
+![demo_vitemadose](https://user-images.githubusercontent.com/45128847/137623784-295c4fcd-b442-459b-bc2e-ab42022ffe5a.gif)
+
 pyvitemadose displays available schedule of covid vaccine for your departement in France
 
 ## install
