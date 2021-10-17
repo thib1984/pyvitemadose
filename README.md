@@ -10,6 +10,12 @@ pyvitemadose displays available schedule of covid vaccine for your departement i
 pyvitemadose \[DPT\] with DPT the department
 
 example : ``pyvitemadose 75`` to display available schedule availables in dpt 75
+
+## Options
+
+  - ``-h/--help``    show the help message and exit
+  - ``-u/--update``  update pyvitemadose
+
 # ⚙️ Prerequisites, Installation, Upgrade 
 
 ## Prerequisites
@@ -28,4 +34,15 @@ or
 ## Upgrade 
 
 ``pyvitemadose -u``
+
+# :construction_worker: Contribution
+
+```
+git clone https://github.com/thib1984/pyvitemadose.git
+cd pyvitemadose 
+#work!
+pip3 install . #to build
+pyvitemadose 38 #to retest
+pip3 uninstall pyvitemadose #to properly uninstall the dev version
+``` 
 
