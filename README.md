@@ -5,7 +5,7 @@ pyvitemadose displays available schedule of covid vaccine for your departement i
 
 ![demo_vitemadose](https://user-images.githubusercontent.com/45128847/137623852-d8e32778-cff4-4849-9a0c-af430aa78e75.gif)
 
-# How to use **pyvitemadose**
+# 🚀 How to use **pyvitemadose**
 
 pyvitemadose \[DPT\] with DPT the department
 
