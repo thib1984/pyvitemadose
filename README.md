@@ -24,3 +24,10 @@ See [this page](INSTALL.md)
 See [this page](CONTRIBUTING.md)
 
 
+# License
+
+MIT License
+
+Copyright (c) 2021 [thib1984](https://github.com/thib1984)
+
+See [this page](LICENSE.txt) for details
