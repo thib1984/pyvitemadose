@@ -23,7 +23,9 @@ See [this page](INSTALL.md)
 
 See [this page](CONTRIBUTING.md)
 
+# :package: Changelog
 
+See [this page](CHANGELOG.md)
 # License
 
 MIT License

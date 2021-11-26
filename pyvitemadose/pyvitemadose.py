@@ -15,10 +15,11 @@ def find(dept):
     for centre in r.json().get("centres_disponibles",[]):
         if centre.get("appointment_count","") != 0:
             trouve = True
-            print("url      : " + centre.get("url"))
-            print("adresse  : " + centre.get("metadata").get("address"))
-            print("type     : " + str(centre.get("vaccine_type")))
-            print("doses    : " + str(centre.get("appointment_count")))    
+            print("1er rdv disp. : " + str(centre.get("prochain_rdv")[0:10]))    
+            print("url           : " + centre.get("url"))
+            print("adresse       : " + centre.get("metadata").get("address"))
+            print("type          : " + str(centre.get("vaccine_type")))
+            print("doses         : " + str(centre.get("appointment_count")))    
             print("")                          
     if not trouve:
         print("pas de creneaux trouves...")
