@@ -21,15 +21,22 @@ def compute_args():
         There is NO WARRANTY, to the extent permitted by law.
         Written by thib1984.""",
     )
-    my_group = my_parser.add_mutually_exclusive_group(required=True)
-    my_group.add_argument(
+    my_parser.add_argument(
         "departement",
         metavar="departement",
         type=str,
         nargs="?",
         help="numero departement",
     )
-    my_group.add_argument(
+    my_parser.add_argument(
+        "-b",
+        "--before",
+        metavar="before",
+        type=str,
+        nargs="?",
+        help="before date yyyy-mm-dd",
+    )    
+    my_parser.add_argument(
         "-u",
         "--update",
         action="store_true",
