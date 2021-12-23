@@ -1,4 +1,4 @@
-# 1.0.1
+# 1.0.2
 
 - [x] executable format available
 # 1.0.0

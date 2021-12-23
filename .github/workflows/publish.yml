@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: pyvitemadose_executable_linux
-          path: pyvitemadose/dist/pyvitemadose                    
+          path: /home/runner/work/pyvitemadose/pyvitemadose/dist/pyvitemadose                    
       - name: tweet
         env: 
           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
