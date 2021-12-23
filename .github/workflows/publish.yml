@@ -27,6 +27,14 @@ jobs:
         with:
           user: ${{ secrets.PYPI_USER }}
           password: ${{ secrets.PYPI_PASSWORD }}
+      - name: executable format
+        run: | 
+          pip install pyinstaller
+          pyinstaller --name pyvitemadose --exclude-module pyvitemadose.update --clean --onefile pyvitemadose/__init__.py
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pyvitemadose_executable_linux
+          path: pyvitemadose/dist/pyvitemadose                    
       - name: tweet
         env: 
           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}

@@ -1,3 +1,6 @@
+# 1.0.1
+
+- [x] executable format available
 # 1.0.0
 
 - [x] ajout filtre date
