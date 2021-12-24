@@ -10,6 +10,8 @@ jobs:
   verify:
     name: verify version is not already pushed
     runs-on : ubuntu-latest
+    outputs:
+      version: ${{ steps.vars.outputs.release_tag }}
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -84,7 +86,9 @@ jobs:
 
   
   autoex:
-    needs: push_to_pypi
+    needs:
+      - verify
+      - push_to_pypi
     strategy:
       fail-fast: false
       matrix:
@@ -95,9 +99,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: Deduce release
-        id: vars
-        run: echo ::set-output name=release_tag::$(grep version setup.py | cut -d "\"" -f2)
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -116,37 +117,34 @@ jobs:
         uses: actions/upload-artifact@v2
         if: ${{ matrix.os-version == 'macos-latest' }} 
         with:
-          name: pyvitemadose_${{ steps.vars.outputs.release_tag }}.app
+          name: pyvitemadose_mac_${{ needs.verify.outputs.version }}.app
           path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*       
       - name: artifact for ubuntu
         uses: actions/upload-artifact@v2
         if: ${{ matrix.os-version == 'ubuntu-20.04' }} 
         with:
-          name: pyvitemadose_${{ steps.vars.outputs.release_tag }}
+          name: pyvitemadose_linux_{{ needs.verify.outputs.version }}
           path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*        
       - name: artifact for windows
         uses: actions/upload-artifact@v2
         if: ${{ matrix.os-version == 'windows-latest' }} 
         with:
-          name: pyvitemadose_${{ steps.vars.outputs.release_tag }}.exe
+          name: pyvitemadose_win_${{ needs.verify.outputs.version }}.exe
           path: D:\a\pyvitemadose\pyvitemadose\dist\pyvitemadose*       
       
   tweet:
-    needs: autoex
+    needs:
+      - verify
+      - autoex
     name: tweet
     runs-on: ubuntu-20.04    
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: Deduce release
-        id: vars
-        run: echo ::set-output name=release_tag::$(grep version setup.py | cut -d "\"" -f2)    
+    steps:   
       - name : tweet
         env: 
           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
           CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-          VERSION: ${{ steps.vars.outputs.release_tag }}
+          VERSION: ${{ needs.verify.outputs.version }}
         run: pip install twython && python .github/publish_tweet.py             
 
