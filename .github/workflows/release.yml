@@ -91,7 +91,7 @@ jobs:
         os-version: ['ubuntu-20.04','windows-latest','macos-latest']
         python-version: [ '3.9' ]    
     runs-on: ${{ matrix.os-version }}
-    name: create aotoex on ${{ matrix.os-version }}
+    name: create auotoex on ${{ matrix.os-version }}
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -112,7 +112,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: pyvitemadose_${{ matrix.os-version }}_${{ steps.vars.outputs.release_tag }}
-          path: /home/runner/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*
+          path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*
 
 
 
