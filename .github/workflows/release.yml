@@ -105,11 +105,9 @@ jobs:
       - name: update pip
         run: |
           python3 -m pip install --upgrade pip
-      - name: install pep517
+      - name: install pyvitemadose
         run: |
-          pip install pep517
-      - name: build
-        run: python3 -m pep517.build --source --binary --out-dir dist/ .                   
+          pip install .                 
       - name: executable format
         run: | 
           pip install pyinstaller
