@@ -113,24 +113,36 @@ jobs:
         run: | 
           pip install pyinstaller
           pyinstaller --name pyvitemadose --exclude-module pyvitemadose.update --clean --onefile pyvitemadose/__init__.py
+
+
+
       - name: artifact for macos
-        uses: actions/upload-artifact@v2
+        uses: svenstaro/upload-release-action@v2
         if: ${{ matrix.os-version == 'macos-latest' }} 
         with:
-          name: pyvitemadose_mac_${{ needs.verify.outputs.version }}.app
-          path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*       
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          asset_name: pyvitemadose_mac_${{ needs.verify.outputs.version }}.app
+          file: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*
+          tag: ${{ github.ref }}
+          overwrite: true      
       - name: artifact for ubuntu
-        uses: actions/upload-artifact@v2
+        uses: svenstaro/upload-release-action@v2
         if: ${{ matrix.os-version == 'ubuntu-20.04' }} 
         with:
-          name: pyvitemadose_linux_${{ needs.verify.outputs.version }}
-          path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*        
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          asset_name: pyvitemadose_linux_${{ needs.verify.outputs.version }}
+          file: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*
+          tag: ${{ github.ref }}
+          overwrite: true                    
       - name: artifact for windows
-        uses: actions/upload-artifact@v2
+        uses: svenstaro/upload-release-action@v2
         if: ${{ matrix.os-version == 'windows-latest' }} 
         with:
-          name: pyvitemadose_win_${{ needs.verify.outputs.version }}.exe
-          path: D:\a\pyvitemadose\pyvitemadose\dist\pyvitemadose*       
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          asset_name: pyvitemadose_win_${{ needs.verify.outputs.version }}.exe
+          file: D:\a\pyvitemadose\pyvitemadose\dist\pyvitemadose*
+          tag: ${{ github.ref }}
+          overwrite: true                  
       
   tweet:
     needs:
