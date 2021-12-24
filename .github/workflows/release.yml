@@ -121,7 +121,7 @@ jobs:
         if: ${{ matrix.os-version == 'macos-latest' }} 
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          asset_name: pyvitemadose_mac_${{ needs.verify.outputs.version }}.app
+          asset_name: pyvitemadose_mac_${{ needs.verify.outputs.version }}
           file: /Users/runner/work/pyvitemadose/pyvitemadose/dist/pyvitemadose
           tag: ${{ github.ref }}
           overwrite: true      
