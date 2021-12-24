@@ -123,7 +123,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: ${{ matrix.os-version == 'ubuntu-20.04' }} 
         with:
-          name: pyvitemadose_linux_{{ needs.verify.outputs.version }}
+          name: pyvitemadose_linux_${{ needs.verify.outputs.version }}
           path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*        
       - name: artifact for windows
         uses: actions/upload-artifact@v2
@@ -138,7 +138,9 @@ jobs:
       - autoex
     name: tweet
     runs-on: ubuntu-20.04    
-    steps:   
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2 
       - name : tweet
         env: 
           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
