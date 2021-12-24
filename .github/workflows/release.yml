@@ -11,14 +11,15 @@ jobs:
     name: verify version is not already pushed
     runs-on : ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Deduce relase
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: Deduce release
       id: vars
-      run: echo ::set-output name=relase_tag::$(grep version setup.py | cut -d "\"" -f2)
+      run: echo ::set-output name=release_tag::$(grep version setup.py | cut -d "\"" -f2)
     - name: Test pypi release
       run: |
-        curl -iL https://pypi.org/project/pyvitemadose/${{ steps.vars.outputs.relase_tag }} | grep "Error code 404" || (echo "La release ${{ steps.vars.outputs.relase_tag }} existe deja." ; exit 1)
-        echo "La release ${{ steps.vars.outputs.relase_tag }} n'existe pas encore. Poursuite du traitement."  
+        curl -iL https://pypi.org/project/pyvitemadose/${{ steps.vars.outputs.release_tag }} | grep "Error code 404" || (echo "La release ${{ steps.vars.outputs.release_tag }} existe deja." ; exit 1)
+        echo "La release ${{ steps.vars.outputs.release_tag }} n'existe pas encore. Poursuite du traitement."  
   
   test:
     needs: verify
@@ -94,6 +95,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Deduce release
+        id: vars
+        run: echo ::set-output name=release_tag::$(grep version setup.py | cut -d "\"" -f2)
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -107,8 +111,8 @@ jobs:
           pyinstaller --name pyvitemadose --exclude-module pyvitemadose.update --clean --onefile pyvitemadose/__init__.py
       - uses: actions/upload-artifact@v2
         with:
-          name: pyvitemadose_${{ matrix.os-version }}_${{ steps.vars.outputs.relase_tag }}
-          path: /home/runner/work/pyvitemadose/pyvitemadose/dist/pyvitemadose
+          name: pyvitemadose_${{ matrix.os-version }}_${{ steps.vars.outputs.release_tag }}
+          path: /home/runner/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*
 
 
 
@@ -117,12 +121,17 @@ jobs:
     name: tweet
     runs-on: ubuntu-20.04    
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Deduce release
+        id: vars
+        run: echo ::set-output name=release_tag::$(grep version setup.py | cut -d "\"" -f2)    
       - name : tweet
         env: 
           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
           CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-          VERSION: ${{ steps.vars.outputs.relase_tag }}
+          VERSION: ${{ steps.vars.outputs.release_tag }}
         run: pip install twython && python .github/publish_tweet.py             
 
