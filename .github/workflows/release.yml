@@ -104,7 +104,12 @@ jobs:
           python-version: '3.9'    
       - name: update pip
         run: |
-          python3 -m pip install --upgrade pip         
+          python3 -m pip install --upgrade pip
+      - name: install pep517
+        run: |
+          pip install pep517
+      - name: build
+        run: python3 -m pep517.build --source --binary --out-dir dist/ .                   
       - name: executable format
         run: | 
           pip install pyinstaller
