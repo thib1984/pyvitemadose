@@ -113,12 +113,12 @@ jobs:
 
 
   tweet:
-      - name: tweet
-        env: 
-          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-          VERSION: ${{ steps.vars.outputs.relase_tag }}
-        run: pip install twython && python .github/publish_tweet.py             
+    - name: tweet
+      env: 
+        CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+        CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+        VERSION: ${{ steps.vars.outputs.relase_tag }}
+      run: pip install twython && python .github/publish_tweet.py             
 
