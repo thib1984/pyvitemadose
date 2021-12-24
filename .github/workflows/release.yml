@@ -113,7 +113,9 @@ jobs:
 
 
   tweet:
+    needs: autoex
     name: tweet
+    runs-on: ubuntu-20.04    
     steps:
       - name : tweet
         env: 
