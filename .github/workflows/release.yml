@@ -109,13 +109,25 @@ jobs:
         run: | 
           pip install pyinstaller
           pyinstaller --name pyvitemadose --exclude-module pyvitemadose.update --clean --onefile pyvitemadose/__init__.py
-      - uses: actions/upload-artifact@v2
+      - name: artifact for macos
+        uses: actions/upload-artifact@v2
+        if: ${{ matrix.os-version == 'macos-latest' }} 
         with:
-          name: pyvitemadose_${{ matrix.os-version }}_${{ steps.vars.outputs.release_tag }}
-          path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*
-
-
-
+          name: pyvitemadose_${{ steps.vars.outputs.release_tag }}.app
+          path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*       
+      - name: artifact for ubuntu
+        uses: actions/upload-artifact@v2
+        if: ${{ matrix.os-version == 'ubuntu-20.04' }} 
+        with:
+          name: pyvitemadose_${{ steps.vars.outputs.release_tag }}
+          path: ~/work/pyvitemadose/pyvitemadose/dist/pyvitemadose*        
+      - name: artifact for windows
+        uses: actions/upload-artifact@v2
+        if: ${{ matrix.os-version == 'windows-latest' }} 
+        with:
+          name: pyvitemadose_${{ steps.vars.outputs.release_tag }}.exe
+          path: D:\a\pyvitemadose\pyvitemadose\dist\pyvitemadose*       
+      
   tweet:
     needs: autoex
     name: tweet
