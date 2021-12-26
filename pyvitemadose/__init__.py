@@ -3,8 +3,9 @@ pyvitemadose init
 """
 
 from os import sys
-from pyvitemadose.args import compute_args
+from pyvitemadose.args import compute_args, is_pyinstaller
 from pyvitemadose.pyvitemadose import find
+from pyvitemadose.update import update
 
 def pyvitemadose():
     """
@@ -13,11 +14,10 @@ def pyvitemadose():
     args = compute_args()
 
     if args.update:
-        try:
-            from pyvitemadose.update import update
+        if not is_pyinstaller():
             update()
-        except ImportError:
-            print("update is disabled. You seem to use autoexec version")    
+        else:
+            print("update is disabled. Do you use a bundle?")
     if args.departement:
         find(args.departement)
     sys.exit(0)

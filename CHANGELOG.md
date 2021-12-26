@@ -1,5 +1,8 @@
-# 1.0.3
+# 1.1
 
+- [x] disable update for bundle
+- [x] condensate output
+- [x] add color and emoji
 - [x] executable format available
 # 1.0.0
 

@@ -7,6 +7,7 @@ on:
 
 jobs:
   
+  #VERIFY VERSION
   verify:
     name: verify version is not already pushed
     runs-on : ubuntu-latest
@@ -23,6 +24,7 @@ jobs:
         curl -iL https://pypi.org/project/pyvitemadose/${{ steps.vars.outputs.release_tag }} | grep "Error code 404" || (echo "La release ${{ steps.vars.outputs.release_tag }} existe deja." ; exit 1)
         echo "La release ${{ steps.vars.outputs.release_tag }} n'existe pas encore. Poursuite du traitement."  
   
+  #MINIMAL TEST
   test:
     needs: verify
     strategy:
@@ -59,6 +61,7 @@ jobs:
         run: pyvitemadose 44  
 
 
+  #PUBLISH PYPI
   push_to_pypi:
     needs: test
     name: push package on pypi
@@ -84,7 +87,7 @@ jobs:
           user: ${{ secrets.PYPI_USER }}
           password: ${{ secrets.PYPI_PASSWORD }}                  
 
-  
+  #PUBLISH BUNDLE
   autoex:
     needs:
       - verify
@@ -113,9 +116,6 @@ jobs:
         run: | 
           pip install pyinstaller
           pyinstaller --name pyvitemadose --exclude-module pyvitemadose.update --clean --onefile pyvitemadose/__init__.py
-
-
-
       - name: artifact for macos
         uses: svenstaro/upload-release-action@v2
         if: ${{ matrix.os-version == 'macos-latest' }} 
@@ -143,7 +143,8 @@ jobs:
           file: D:\a\pyvitemadose\pyvitemadose\dist\pyvitemadose.exe
           tag: ${{ github.ref }}
           overwrite: true                  
-      
+
+  #TWEET!   
   tweet:
     needs:
       - verify

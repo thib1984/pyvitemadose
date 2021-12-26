@@ -42,6 +42,12 @@ def compute_args():
         action="store_true",
         help="update pyvitemadose",
     )
+    my_parser.add_argument(
+        "-n",
+        "--nocolor",
+        action="store_true",
+        help="disable colors and emojis in sysout",
+    )
 
     # if no parameter
     if len(sys.argv) == 1:
@@ -50,3 +56,7 @@ def compute_args():
 
     args = my_parser.parse_args()
     return args
+
+
+def is_pyinstaller():
+    return getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS')

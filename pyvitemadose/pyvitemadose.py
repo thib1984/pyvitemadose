@@ -5,6 +5,8 @@ pyvitemadose use case
 import sys
 import requests
 import re
+import platform
+from termcolor import colored
 
 from pyvitemadose.args import compute_args
 
@@ -37,24 +39,23 @@ def find(dept):
                 <= compute_args().before
             ):
                 trouve = True
-                print(
-                    "1er rdv disp. : "
-                    + str(centre.get("prochain_rdv")[0:10])
+                printcoloredandemoji(
+                    str(centre.get("prochain_rdv")[0:10]) + ", " + centre.get("metadata").get("address"),"green","\U0001F4C5"
                 )
-                print("url           : " + centre.get("url"))
-                print(
-                    "adresse       : "
-                    + centre.get("metadata").get("address")
-                )
-                print(
-                    "type          : "
-                    + str(centre.get("vaccine_type"))
-                )
-                print(
-                    "doses         : "
-                    + str(centre.get("appointment_count"))
+                printcoloredandemoji(centre.get("url"),"green","\U0001F517")
+                printcoloredandemoji(
+                    str(centre.get("appointment_count")) + " " + str(centre.get("vaccine_type")),"yellow","\U0001F489"
                 )
                 print("")
     if not trouve:
         print("pas de creneaux trouves...")
         sys.exit(2)
+
+
+def printcoloredandemoji(phrase, color, emoji):
+    if compute_args().nocolor:
+        print(phrase)
+    elif platform.system().lower() in "windows":
+        print(colored(phrase,color))
+    else:        
+        print(colored(emoji+ " " + phrase,color))
