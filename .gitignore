@@ -3,4 +3,5 @@ dist
 pyvitemadose.egg-info
 .vscode
 venv
+pyvitemadose_env
 

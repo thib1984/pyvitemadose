@@ -1,3 +1,7 @@
+# 2.0.0
+
+- [x] clean doc
+
 # 1.1
 
 - [x] disable update for bundle
