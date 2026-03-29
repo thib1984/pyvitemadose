@@ -15,7 +15,6 @@ example : ``pyvitemadose 75`` to display available schedule availables in dpt 75
 
   - ``-b/--before [DATE]``  filter schedule before the date given (yyyy-mm-dd format)
   - ``-h/--help``    show the help message and exit
-  - ``-u/--update``  update pyvitemadose
 
 # ⚙️ Install
 

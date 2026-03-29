@@ -1,3 +1,7 @@
+# 2.1.0
+
+- [x] disable update
+
 # 2.0.0
 
 - [x] clean doc

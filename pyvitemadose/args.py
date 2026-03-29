@@ -12,14 +12,26 @@ def compute_args():
     """
     my_parser = argparse.ArgumentParser(
         description="pyvitemadose displays available schedules of covid vaccine for your departement in France given in parameter",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-        Full documentation at: <https://github.com/thib1984/pyvitemadose>.
-        Report bugs to <https://github.com/thib1984/pyvitemadose/issues>.
-        MIT Licence.
-        Copyright (c) 2021 thib1984.
-        This is free software: you are free to change and redistribute it.
-        There is NO WARRANTY, to the extent permitted by law.
-        Written by thib1984.""",
+To upgrade, run:
+    pipx upgrade pyvitemadose --include-deps
+To install, run:
+    pipx install pyvitemadose
+To force reinstall, run:
+    pipx install pyvitemadose --force
+To uninstall, run:
+    pipx uninstall pyvitemadose
+To force uninstall (if needed), run:
+    pipx uninstall pyvitemadose --force
+
+Full documentation at: <https://github.com/thib1984/pyvitemadose>.
+Report bugs to <https://github.com/thib1984/pyvitemadose/issues>.
+MIT Licence.
+Copyright (c) 2021 thib1984.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Written by thib1984.""",
     )
     my_parser.add_argument(
         "departement",
@@ -36,12 +48,6 @@ def compute_args():
         nargs="?",
         help="before date yyyy-mm-dd",
     )    
-    my_parser.add_argument(
-        "-u",
-        "--update",
-        action="store_true",
-        help="update pyvitemadose",
-    )
     my_parser.add_argument(
         "-n",
         "--nocolor",
