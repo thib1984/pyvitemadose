@@ -4,7 +4,18 @@ pygitscrum argparse gestion
 
 import argparse
 import sys
+import importlib.metadata
 
+def get_env_report():
+    lines = []
+
+    lines.append("\nInstalled packages:")
+    for dist in sorted(importlib.metadata.distributions(), key=lambda d: d.metadata["Name"].lower()):
+        name = dist.metadata["Name"]
+        version = dist.version
+        lines.append(f"  - {name}=={version}")
+    
+    return "\n".join(lines)
 
 def compute_args():
     """
@@ -13,7 +24,7 @@ def compute_args():
     my_parser = argparse.ArgumentParser(
         description="pyvitemadose displays available schedules of covid vaccine for your departement in France given in parameter",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
+        epilog=f"""
 To upgrade, run:
     pipx upgrade pyvitemadose --include-deps
 To install, run:
@@ -24,6 +35,8 @@ To uninstall, run:
     pipx uninstall pyvitemadose
 To force uninstall (if needed), run:
     pipx uninstall pyvitemadose --force
+
+{get_env_report()}
 
 Full documentation at: <https://github.com/thib1984/pyvitemadose>.
 Report bugs to <https://github.com/thib1984/pyvitemadose/issues>.
