@@ -26,7 +26,8 @@ def compute_args():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=f"""
 To upgrade, run:
-    pipx upgrade pyvitemadose --include-deps
+    pipx upgrade pyvitemadose
+    pipx reinstall pyvitemadose #to force update dependencies
 To install, run:
     pipx install pyvitemadose
 To force reinstall, run:

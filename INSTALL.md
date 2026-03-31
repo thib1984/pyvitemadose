@@ -30,10 +30,9 @@ pipx install pyvitemadose
 # Upgrade
 
 ```
-pipx upgrade pyvitemadose --include-deps
+pipx upgrade pyvitemadose
+pipx reinstall pyvitemadose #to force update dependencies
 ```
-
-This command upgrades the application to the latest version and also updates all its dependencies.
 
 # Uninstall
 
